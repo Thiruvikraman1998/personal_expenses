@@ -8,19 +8,20 @@ import 'package:personalexpensesapp/models/transaction_model.dart';
 import 'expenses_card.dart';
 
 class TransactionsList extends StatelessWidget {
-  const TransactionsList({super.key});
+  final List<Transaction> transactions;
+  const TransactionsList({super.key, required this.transactions});
 
   @override
   Widget build(BuildContext context) {
     return Column(
-        // children: _userTransactions
-        //     .map((transact) => ExpensesCard(
-        //           id: transact.id,
-        //           title: transact.title,
-        //           amt: transact.amount.toString(),
-        //           date: DateFormat.yMMMMd().format(transact.date),
-        //         ))
-        //     .toList(),
-        );
+      children: transactions
+          .map((transact) => ExpensesCard(
+                id: transact.id,
+                title: transact.title,
+                amt: transact.amount.toString(),
+                date: DateFormat.yMMMMd().format(transact.date),
+              ))
+          .toList(),
+    );
   }
 }

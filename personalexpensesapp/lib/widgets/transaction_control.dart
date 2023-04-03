@@ -22,7 +22,12 @@ class _TransactionControlState extends State<TransactionControl> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [ExpensesInput(), TransactionsList()],
+      children: [
+        ExpensesInput(),
+        TransactionsList(
+          transactions: _userTransactions,
+        )
+      ],
     );
   }
 }
