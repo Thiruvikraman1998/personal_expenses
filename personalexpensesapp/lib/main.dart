@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:personalexpensesapp/screens/expenses_view.dart';
 
 void main(List<String> args) {
-  runApp(ExpensesApp());
+  runApp(const ExpensesApp());
 }
 
 class ExpensesApp extends StatelessWidget {
@@ -10,6 +11,19 @@ class ExpensesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text("Expenses App"),
+        ),
+        body: ExpensesView(),
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {},
+          label: const Text("Add Expenses"),
+          icon: const Icon(Icons.add),
+          enableFeedback: true,
+        ),
+      ),
+    );
   }
 }
