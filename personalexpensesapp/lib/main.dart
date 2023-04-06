@@ -15,6 +15,7 @@ class ExpensesApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: const Text("Expenses App"),
+          actions: [IconButton(onPressed: () {}, icon: Icon(Icons.add))],
         ),
         body: ExpensesView(),
         floatingActionButton: FloatingActionButton.extended(

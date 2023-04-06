@@ -24,16 +24,18 @@ class TransactionsList extends StatelessWidget {
     //       .toList(),
     // );
     return Container(
-      height: 300,
+      height: 530,
       child: ListView.builder(
-          itemCount: transactions.length,
-          itemBuilder: (context, index) {
-            return ExpensesCard(
-                id: transactions[index].id,
-                title: transactions[index].title,
-                amt: transactions[index].amount.toString(),
-                date: transactions[index].date.toString());
-          }),
+        itemCount: transactions.length,
+        itemBuilder: (context, index) {
+          return ExpensesCard(
+            id: transactions[index].id,
+            title: transactions[index].title,
+            amt: transactions[index].amount.toStringAsFixed(2),
+            date: transactions[index].date.toString(),
+          );
+        },
+      ),
     );
   }
 }

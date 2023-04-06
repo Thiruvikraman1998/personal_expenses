@@ -22,7 +22,7 @@ class _TransactionControlState extends State<TransactionControl> {
         id: DateTime.now().toString(),
         title: transactionTitle,
         amount: transactionAmount,
-        date: DateFormat('dd-MMM-yy').format(DateTime.now()));
+        date: DateFormat.yMMMMd().format(DateTime.now()));
 
     setState(() {
       _userTransactions.add(newTransaction);

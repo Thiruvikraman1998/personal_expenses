@@ -8,6 +8,19 @@ class ExpensesInput extends StatelessWidget {
   final titleController = TextEditingController();
   final amountController = TextEditingController();
 
+  void submitData() {
+    final enteredTitle = titleController.text;
+    final enteredAmount = double.parse(amountController.text);
+
+    if (enteredTitle.isEmpty || enteredAmount <= 0) {
+      return;
+    }
+    addTransaction(
+      titleController.text,
+      double.parse(amountController.text),
+    ); // here we parse the amountcontroller.text to double bcos the .text always makes as a text only so we parse it to double and send data to list.
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -16,23 +29,27 @@ class ExpensesInput extends StatelessWidget {
           children: [
             TextField(
               controller: titleController,
-              decoration: InputDecoration(labelText: "Title"),
+              decoration: InputDecoration(
+                labelText: "Title",
+              ),
+              onSubmitted: (value) => submitData(),
             ),
             TextField(
               controller: amountController,
               decoration: InputDecoration(labelText: "Amount"),
+              // keyboardType: TextInputType.number,  => use this for android only.
+              keyboardType: const TextInputType.numberWithOptions(
+                  decimal:
+                      true), // use this for ios as it dont automatically allows decimals.
+              onSubmitted: (value) => submitData(),
             ),
             TextButton(
-                onPressed: () {
-                  addTransaction(
-                      titleController.text,
-                      double.parse(amountController
-                          .text)); // here we parese the amountcontroller.text to double bcos the .text always makes as a text only so we parse it to double and send data to list.
-                },
-                child: const Text(
-                  "Add Transaction",
-                  style: TextStyle(color: Colors.blue, fontSize: 20),
-                ))
+              onPressed: submitData,
+              child: const Text(
+                "Add Transaction",
+                style: TextStyle(color: Colors.blue, fontSize: 20),
+              ),
+            )
           ],
         ),
       ),

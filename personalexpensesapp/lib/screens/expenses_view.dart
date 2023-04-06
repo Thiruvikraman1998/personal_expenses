@@ -12,13 +12,15 @@ class ExpensesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          child: Text("Expenses chart"),
-        ),
-        TransactionControl()
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Container(
+            child: Text("Expenses chart"),
+          ),
+          TransactionControl()
+        ],
+      ),
     );
   }
 }
