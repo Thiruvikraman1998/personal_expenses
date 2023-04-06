@@ -13,15 +13,27 @@ class TransactionsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: transactions
-          .map((transact) => ExpensesCard(
-                id: transact.id,
-                title: transact.title,
-                amt: transact.amount.toString(),
-                date: DateFormat.yMMMMd().format(transact.date),
-              ))
-          .toList(),
+    // return Column(
+    //   children: transactions
+    //       .map((transact) => ExpensesCard(
+    //             id: transact.id,
+    //             title: transact.title,
+    //             amt: transact.amount.toString(),
+    //             date: DateFormat.yMMMMd().format(transact.date),
+    //           ))
+    //       .toList(),
+    // );
+    return Container(
+      height: 300,
+      child: ListView.builder(
+          itemCount: transactions.length,
+          itemBuilder: (context, index) {
+            return ExpensesCard(
+                id: transactions[index].id,
+                title: transactions[index].title,
+                amt: transactions[index].amount.toString(),
+                date: transactions[index].date.toString());
+          }),
     );
   }
 }

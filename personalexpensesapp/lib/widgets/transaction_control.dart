@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:intl/intl.dart';
 
 import '../models/transaction_model.dart';
 import 'new_input.dart';
@@ -21,7 +22,7 @@ class _TransactionControlState extends State<TransactionControl> {
         id: DateTime.now().toString(),
         title: transactionTitle,
         amount: transactionAmount,
-        date: DateTime.now());
+        date: DateFormat('dd-MMM-yy').format(DateTime.now()));
 
     setState(() {
       _userTransactions.add(newTransaction);
