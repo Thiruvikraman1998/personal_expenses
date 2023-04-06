@@ -14,16 +14,25 @@ class TransactionControl extends StatefulWidget {
 }
 
 class _TransactionControlState extends State<TransactionControl> {
-  final List<Transaction> _userTransactions = [
-    Transaction(id: "T123", title: "Bag", amount: 35.5, date: DateTime.now()),
-    Transaction(id: "T134", title: "Fuel", amount: 10.7, date: DateTime.now()),
-    Transaction(id: "T321", title: "Food", amount: 47.44, date: DateTime.now()),
-  ];
+  final List<Transaction> _userTransactions = [];
+
+  void _addNewTransaction(String transactionTitle, double transactionAmount) {
+    final newTransaction = Transaction(
+        id: DateTime.now().toString(),
+        title: transactionTitle,
+        amount: transactionAmount,
+        date: DateTime.now());
+
+    setState(() {
+      _userTransactions.add(newTransaction);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ExpensesInput(),
+        ExpensesInput(addTransaction: _addNewTransaction),
         TransactionsList(
           transactions: _userTransactions,
         )
