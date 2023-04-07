@@ -23,7 +23,7 @@ class ExpensesCard extends StatelessWidget {
             Container(
               height: 55,
               width: 55,
-              margin: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+              margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.black, width: 2),
                   borderRadius: BorderRadius.circular(100)),
@@ -40,7 +40,8 @@ class ExpensesCard extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                      fontSize: 25, fontWeight: FontWeight.bold),
                 ),
                 Text(
                   date,

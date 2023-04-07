@@ -29,14 +29,14 @@ class ExpensesInput extends StatelessWidget {
           children: [
             TextField(
               controller: titleController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: "Title",
               ),
               onSubmitted: (value) => submitData(),
             ),
             TextField(
               controller: amountController,
-              decoration: InputDecoration(labelText: "Amount"),
+              decoration: const InputDecoration(labelText: "Amount"),
               // keyboardType: TextInputType.number,  => use this for android only.
               keyboardType: const TextInputType.numberWithOptions(
                   decimal:
