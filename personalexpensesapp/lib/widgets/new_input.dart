@@ -49,7 +49,7 @@ class ExpensesInput extends StatelessWidget {
                 "Add Transaction",
                 style: TextStyle(color: Colors.blue, fontSize: 20),
               ),
-            )
+            ),
           ],
         ),
       ),
