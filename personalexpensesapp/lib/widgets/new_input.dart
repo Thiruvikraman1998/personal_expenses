@@ -2,10 +2,17 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
 
-class ExpensesInput extends StatelessWidget {
+class ExpensesInput extends StatefulWidget {
   final Function addTransaction;
   ExpensesInput({super.key, required this.addTransaction});
+
+  @override
+  State<ExpensesInput> createState() => _ExpensesInputState();
+}
+
+class _ExpensesInputState extends State<ExpensesInput> {
   final titleController = TextEditingController();
+
   final amountController = TextEditingController();
 
   void submitData() {
@@ -15,10 +22,11 @@ class ExpensesInput extends StatelessWidget {
     if (enteredTitle.isEmpty || enteredAmount <= 0) {
       return;
     }
-    addTransaction(
+    widget.addTransaction(
       titleController.text,
       double.parse(amountController.text),
     ); // here we parse the amountcontroller.text to double bcos the .text always makes as a text only so we parse it to double and send data to list.
+    Navigator.of(context).pop();
   }
 
   @override
@@ -45,9 +53,10 @@ class ExpensesInput extends StatelessWidget {
             ),
             TextButton(
               onPressed: submitData,
-              child: const Text(
+              child: Text(
                 "Add Transaction",
-                style: TextStyle(color: Colors.blue, fontSize: 20),
+                style: TextStyle(
+                    color: Theme.of(context).primaryColor, fontSize: 20),
               ),
             ),
           ],

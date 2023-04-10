@@ -1,30 +1,29 @@
+import 'dart:ffi';
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:personalexpensesapp/screens/expenses_view.dart';
+import 'package:personalexpensesapp/widgets/new_input.dart';
+
+import 'models/transaction_model.dart';
+import 'widgets/transactions_list.dart';
 
 void main(List<String> args) {
-  runApp(const ExpensesApp());
+  runApp(ExpensesApp());
 }
 
 class ExpensesApp extends StatelessWidget {
   const ExpensesApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text("Expenses App"),
-          actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.add))],
-        ),
-        body: const ExpensesView(),
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {},
-          label: const Text("Add Expenses"),
-          icon: const Icon(Icons.add),
-          enableFeedback: true,
-        ),
+      theme: ThemeData(
+        primarySwatch: Colors.cyan,
       ),
+      home: ExpensesView(),
     );
   }
 }

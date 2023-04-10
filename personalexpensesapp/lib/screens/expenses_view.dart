@@ -1,25 +1,80 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:personalexpensesapp/models/transaction_model.dart';
 import 'package:personalexpensesapp/widgets/expenses_card.dart';
 import 'package:intl/intl.dart';
 import 'package:personalexpensesapp/widgets/new_input.dart';
-import 'package:personalexpensesapp/widgets/transaction_control.dart';
 import 'package:personalexpensesapp/widgets/transactions_list.dart';
 
-class ExpensesView extends StatelessWidget {
+class ExpensesView extends StatefulWidget {
   const ExpensesView({super.key});
 
   @override
+  State<ExpensesView> createState() => _ExpensesViewState();
+}
+
+class _ExpensesViewState extends State<ExpensesView> {
+  final List<Transaction> _userTransactions = [
+    Transaction(
+        id: Random().nextInt(10).toString(),
+        title: "Bag",
+        amount: 25,
+        date: DateFormat.ABBR_MONTH.toString())
+  ];
+
+  void _addNewTransaction(String transactionTitle, double transactionAmount) {
+    final newTransaction = Transaction(
+        id: DateTime.now().toString(),
+        title: transactionTitle,
+        amount: transactionAmount,
+        date: DateFormat.yMMMMd().format(DateTime.now()));
+
+    setState(() {
+      _userTransactions.add(newTransaction);
+    });
+  }
+
+  void _startNewTransaction(BuildContext ctx) {
+    showModalBottomSheet(
+      context: ctx,
+      builder: (_) {
+        return ExpensesInput(addTransaction: _addNewTransaction);
+      },
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          Container(
-            child: Text("Expenses chart"),
-          ),
-          TransactionControl()
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Expenses App"),
+        actions: [
+          IconButton(
+            onPressed: () => _startNewTransaction(context),
+            icon: const Icon(Icons.add),
+          )
         ],
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const Text("Graph"),
+            const SizedBox(
+              height: 20,
+            ),
+            TransactionsList(
+              transactions: _userTransactions,
+            )
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => _startNewTransaction(context),
+        label: const Text("Add Expenses"),
+        icon: const Icon(Icons.add),
+        enableFeedback: true,
       ),
     );
   }
