@@ -22,6 +22,23 @@ class ExpensesApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.cyan,
+        fontFamily: "Quicksand",
+        // appBarTheme: AppBarTheme(
+        //     toolbarTextStyle: ThemeData.light()
+        //         .textTheme
+        //         .copyWith(
+        //           titleLarge: const TextStyle(
+        //             fontFamily: "OpenSans",
+        //           ),
+        //         )
+        //         .bodyMedium,
+        //     titleTextStyle: ThemeData.light()
+        //         .textTheme
+        //         .copyWith(
+        //           titleLarge: TextStyle(fontFamily: "OpenSans"),
+        //         )
+        //         .titleLarge),
+        // the above appbar theme is used if we want to add styles to only for the appbar alone in all oages.
       ),
       home: ExpensesView(),
     );
