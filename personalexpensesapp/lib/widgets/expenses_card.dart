@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class ExpensesCard extends StatelessWidget {
   final String id;
   final String title;
   final String amt;
-  final String date;
+  final DateTime date;
   const ExpensesCard(
       {super.key,
       required this.id,
@@ -44,7 +45,7 @@ class ExpensesCard extends StatelessWidget {
                       fontSize: 25, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  date,
+                  DateFormat.yMMMd().format(date),
                   style: TextStyle(color: Colors.grey[700]),
                 )
               ],

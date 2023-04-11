@@ -24,18 +24,36 @@ class TransactionsList extends StatelessWidget {
     //       .toList(),
     // );
     return Container(
-      height: 530,
-      child: ListView.builder(
-        itemCount: transactions.length,
-        itemBuilder: (context, index) {
-          return ExpensesCard(
-            id: transactions[index].id,
-            title: transactions[index].title,
-            amt: transactions[index].amount.toStringAsFixed(2),
-            date: transactions[index].date.toString(),
-          );
-        },
-      ),
+      height: 750,
+      child: transactions.length == 0
+          ? Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const Text("No transactions added yet"),
+                const SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  height: 600,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/image/waiting.png"),
+                    ),
+                  ),
+                )
+              ],
+            )
+          : ListView.builder(
+              itemCount: transactions.length,
+              itemBuilder: (context, index) {
+                return ExpensesCard(
+                  id: transactions[index].id,
+                  title: transactions[index].title,
+                  amt: transactions[index].amount.toStringAsFixed(2),
+                  date: transactions[index].date,
+                );
+              },
+            ),
     );
   }
 }

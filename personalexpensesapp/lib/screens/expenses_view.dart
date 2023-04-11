@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:personalexpensesapp/models/transaction_model.dart';
+import 'package:personalexpensesapp/widgets/chart.dart';
 import 'package:personalexpensesapp/widgets/expenses_card.dart';
 import 'package:intl/intl.dart';
 import 'package:personalexpensesapp/widgets/new_input.dart';
@@ -16,20 +17,14 @@ class ExpensesView extends StatefulWidget {
 }
 
 class _ExpensesViewState extends State<ExpensesView> {
-  final List<Transaction> _userTransactions = [
-    Transaction(
-        id: Random().nextInt(10).toString(),
-        title: "Bag",
-        amount: 25,
-        date: DateFormat.ABBR_MONTH.toString())
-  ];
+  final List<Transaction> _userTransactions = [];
 
   void _addNewTransaction(String transactionTitle, double transactionAmount) {
     final newTransaction = Transaction(
         id: DateTime.now().toString(),
         title: transactionTitle,
         amount: transactionAmount,
-        date: DateFormat.yMMMMd().format(DateTime.now()));
+        date: DateTime.now());
 
     setState(() {
       _userTransactions.add(newTransaction);
@@ -60,7 +55,7 @@ class _ExpensesViewState extends State<ExpensesView> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const Text("Graph"),
+            Chart(),
             const SizedBox(
               height: 20,
             ),

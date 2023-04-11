@@ -22,6 +22,7 @@ class ExpensesApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.cyan,
+        //useMaterial3: true,
         fontFamily: "Quicksand",
         // appBarTheme: AppBarTheme(
         //     toolbarTextStyle: ThemeData.light()
